@@ -294,11 +294,10 @@ async def main():
         )
     })
     
-    # Add routes
+    # Add routes (OPTIONS handled by aiohttp_cors automatically)
     resource = cors.add(app.router.add_resource("/"))
     cors.add(resource.add_route("GET", handle_get_track))
     cors.add(resource.add_route("POST", handle_post_track))
-    cors.add(resource.add_route("OPTIONS", handle_options))
     
     runner = web.AppRunner(app)
     await runner.setup()
